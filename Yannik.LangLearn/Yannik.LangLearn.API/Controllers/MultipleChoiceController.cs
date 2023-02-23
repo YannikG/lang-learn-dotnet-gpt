@@ -34,7 +34,30 @@ namespace Yannik.LangLearn.API.Controllers
                 return BadRequest("Question language is not supported");
             }
 
-            return Ok(await _service.GetQuestionWithAnswerAsync(learningLanguage, questionLanguage, difficulty));
+            return Ok(await _service.GetNextMultipleChoicesAsync(learningLanguage, questionLanguage, difficulty));
+        }
+
+        [HttpGet("generateQuestion")]
+        public async Task<IActionResult> GenerateNextQuestionAsync([FromQuery] string learningLanguage, [FromQuery] string questionLanguage, [FromQuery] string difficulty)
+        {
+            if (learningLanguage == null || !SupportedLanguage.IsLanguageSupported(learningLanguage))
+            {
+                return BadRequest("language is not supported");
+            }
+
+            if (difficulty == null || !SupportedDifficulty.isSupported(difficulty))
+            {
+                return BadRequest("difficulty is not supported");
+            }
+
+            if (string.IsNullOrEmpty(questionLanguage) || !SupportedLanguage.IsQuestionLanguageSupported(questionLanguage))
+            {
+                return BadRequest("Question language is not supported");
+            }
+
+            await _service.GenerateAndStoreMultipleChoiceAsync(learningLanguage, questionLanguage, difficulty);
+
+            return NoContent();
         }
     }
 }

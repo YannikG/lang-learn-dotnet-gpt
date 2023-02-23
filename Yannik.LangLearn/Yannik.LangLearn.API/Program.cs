@@ -1,4 +1,6 @@
-using Yannik.LangLearn.API.Clients;
+using Yannik.LangLearn.API.DataAccess;
+using Yannik.LangLearn.API.DataAccess.Database;
+using Yannik.LangLearn.API.DataAccess.OpenAI;
 using Yannik.LangLearn.API.Options;
 using Yannik.LangLearn.API.Services;
 
@@ -14,7 +16,14 @@ builder.Configuration.AddUserSecrets<Program>();
 builder.Services.Configure<OpenAIOptions>(
     builder.Configuration.GetSection("OpenAI")
 );
+
+builder.Services.Configure<MongoDBOptions>(
+    builder.Configuration.GetSection("QuestionDatabase")
+);
+
 builder.Services.AddScoped<OpenAIClientWrapper>();
+builder.Services.AddScoped<MultipleChoiceDatabaseRepository>();
+builder.Services.AddScoped<MultipleChoiceOpenAIRepository>();
 
 builder.Services.AddScoped<MultipleChoiceService>();
 

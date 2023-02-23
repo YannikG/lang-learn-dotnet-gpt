@@ -5,7 +5,7 @@ using OpenAI_API.Completions;
 using OpenAI_API.Models;
 using Yannik.LangLearn.API.Options;
 
-namespace Yannik.LangLearn.API.Clients
+namespace Yannik.LangLearn.API.DataAccess
 {
     public class OpenAIClientWrapper
     {
@@ -26,7 +26,8 @@ namespace Yannik.LangLearn.API.Clients
                 Model = Model.DavinciText,
                 Prompt = prompt,
                 MaxTokens = _options.MaxTokens,
-                Temperature = _options.Temperature
+                Temperature = _options.Temperature,
+                user = _options.UserId
             };
 
             // Send the request to the API and get the generated text in JSON format
