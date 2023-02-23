@@ -19,21 +19,20 @@ namespace Yannik.LangLearn.API.Services
             _random = new Random();
         }
 
-        public async Task<List<MultipleChoiceQuestionDatabaseModel>> GetNextMultipleChoicesAsync(string learningLanguage, string questionLanguage, string difficutly)
+        public async Task<List<MultipleChoiceQuestionDatabaseModel>> GetNextMultipleChoicesAsync(string learningLanguage, string questionLanguage)
         {
             throw new NotImplementedException();
         }
 
-        public async Task GenerateAndStoreMultipleChoiceAsync(string learningLanguage, string questionLanguage, string difficutly)
+        public async Task GenerateAndStoreMultipleChoiceAsync(string learningLanguage, string questionLanguage, string topic)
         {
-            var result = await _openAIRepository.GetQuestionWithAnswerAsync(learningLanguage, questionLanguage, difficutly);
+            var result = await _openAIRepository.GetQuestionWithAnswerAsync(learningLanguage, questionLanguage, topic);
 
             if (result == null)
                 return;
 
             var newEntity = new MultipleChoiceQuestionDatabaseModel
             {
-                Difficulty = difficutly,
                 LearningLanguage = learningLanguage,
                 QuestionLangauge = questionLanguage,
                 Question = result.Question
