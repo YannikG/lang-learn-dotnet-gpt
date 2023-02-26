@@ -1,4 +1,4 @@
-﻿namespace Yannik.LanLearn.Core.Models.Database
+﻿namespace Yannik.LangLearn.Core.Models.Database
 {
     public class MultipleChoiceQuestionDatabaseModel : BaseDatabaseEntityModel
     {

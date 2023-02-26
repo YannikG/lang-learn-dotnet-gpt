@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.Options;
 using MongoDB.Driver;
-using Yannik.LanLearn.Core.Models.Database;
-using Yannik.LanLearn.Core.Options;
+using Yannik.LangLearn.Core.Models.Database;
+using Yannik.LangLearn.Core.Options;
 
-namespace Yannik.LanLearn.Core.DataAccess.Database
+namespace Yannik.LangLearn.Core.DataAccess.Database
 {
     public class MultipleChoiceDatabaseRepository : BaseDatabaseRepository<MultipleChoiceQuestionDatabaseModel>
     {

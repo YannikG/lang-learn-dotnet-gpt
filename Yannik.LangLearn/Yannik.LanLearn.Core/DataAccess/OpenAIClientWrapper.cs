@@ -3,9 +3,9 @@ using Microsoft.Extensions.Options;
 using OpenAI_API;
 using OpenAI_API.Completions;
 using OpenAI_API.Models;
-using Yannik.LanLearn.Core.Options;
+using Yannik.LangLearn.Core.Options;
 
-namespace Yannik.LanLearn.Core.DataAccess
+namespace Yannik.LangLearn.Core.DataAccess
 {
     public class OpenAIClientWrapper
     {

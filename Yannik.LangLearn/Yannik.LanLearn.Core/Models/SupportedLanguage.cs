@@ -1,4 +1,4 @@
-﻿namespace Yannik.LanLearn.Core.Models
+﻿namespace Yannik.LangLearn.Core.Models
 {
     public static class SupportedLanguage
     {

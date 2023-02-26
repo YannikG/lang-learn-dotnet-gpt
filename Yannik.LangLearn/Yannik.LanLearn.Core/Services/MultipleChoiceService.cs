@@ -1,8 +1,8 @@
-﻿using Yannik.LanLearn.Core.DataAccess.Database;
-using Yannik.LanLearn.Core.DataAccess.OpenAI;
-using Yannik.LanLearn.Core.Models.Database;
+﻿using Yannik.LangLearn.Core.DataAccess.Database;
+using Yannik.LangLearn.Core.DataAccess.OpenAI;
+using Yannik.LangLearn.Core.Models.Database;
 
-namespace Yannik.LanLearn.Core.Services
+namespace Yannik.LangLearn.Core.Services
 {
     public class MultipleChoiceService
     {

@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
 
-namespace Yannik.LanLearn.Core.Models.Database
+namespace Yannik.LangLearn.Core.Models.Database
 {
     public class BaseDatabaseEntityModel
     {

@@ -1,4 +1,4 @@
-﻿namespace Yannik.LanLearn.Core.Models.OpenAI
+﻿namespace Yannik.LangLearn.Core.Models.OpenAI
 {
     public class MultipleChoiceQuestionAndAnswers
     {

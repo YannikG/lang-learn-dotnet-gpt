@@ -1,7 +1,7 @@
 ﻿using MongoDB.Driver;
-using Yannik.LanLearn.Core.Models.Database;
+using Yannik.LangLearn.Core.Models.Database;
 
-namespace Yannik.LanLearn.Core.DataAccess.Database
+namespace Yannik.LangLearn.Core.DataAccess.Database
 {
     public class BaseDatabaseRepository<T> where T : BaseDatabaseEntityModel
     {
