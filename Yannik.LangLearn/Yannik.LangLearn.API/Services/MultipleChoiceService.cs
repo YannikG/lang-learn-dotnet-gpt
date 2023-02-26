@@ -1,8 +1,6 @@
-﻿using Yannik.LangLearn.API.DataAccess;
-using Yannik.LangLearn.API.DataAccess.Database;
+﻿using Yannik.LangLearn.API.DataAccess.Database;
 using Yannik.LangLearn.API.DataAccess.OpenAI;
 using Yannik.LangLearn.API.Models.Database;
-using Yannik.LangLearn.API.Models.OpenAI;
 
 namespace Yannik.LangLearn.API.Services
 {
@@ -12,6 +10,8 @@ namespace Yannik.LangLearn.API.Services
         private readonly MultipleChoiceDatabaseRepository _dbRepository;
         private readonly Random _random;
 
+        private const int QUESTIONS_PER_ROUND = 5;
+
         public MultipleChoiceService(MultipleChoiceOpenAIRepository openAIRepository, MultipleChoiceDatabaseRepository dbRepository)
         {
             _dbRepository = dbRepository;
@@ -19,11 +19,33 @@ namespace Yannik.LangLearn.API.Services
             _random = new Random();
         }
 
+        /// <summary>
+        /// Get a Random Set of Multiple Choice Questions.
+        /// </summary>
+        /// <param name="learningLanguage"></param>
+        /// <param name="questionLanguage"></param>
+        /// <returns></returns>
         public async Task<List<MultipleChoiceQuestionDatabaseModel>> GetNextMultipleChoicesAsync(string learningLanguage, string questionLanguage)
         {
-            throw new NotImplementedException();
+            var count = Convert.ToInt32(await _dbRepository.CountAsnyc(learningLanguage, questionLanguage));
+            
+            if (count == 0)
+                return new List<MultipleChoiceQuestionDatabaseModel>();
+            
+            var randomSkip = _random.Next(0, count - QUESTIONS_PER_ROUND);
+
+            var result = await _dbRepository.GetMultipleChoicesAsync(learningLanguage, questionLanguage, randomSkip, QUESTIONS_PER_ROUND);
+
+            return result;
         }
 
+        /// <summary>
+        /// Ask OpenAI to generate a new set of data and store it into the database.
+        /// </summary>
+        /// <param name="learningLanguage"></param>
+        /// <param name="questionLanguage"></param>
+        /// <param name="topic"></param>
+        /// <returns></returns>
         public async Task GenerateAndStoreMultipleChoiceAsync(string learningLanguage, string questionLanguage, string topic)
         {
             var result = await _openAIRepository.GetQuestionWithAnswerAsync(learningLanguage, questionLanguage, topic);
