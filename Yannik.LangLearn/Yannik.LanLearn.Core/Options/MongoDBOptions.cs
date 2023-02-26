@@ -1,4 +1,4 @@
-﻿namespace Yannik.LangLearn.API.Options
+﻿namespace Yannik.LanLearn.Core.Options
 {
     public class MongoDBOptions
     {

@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Yannik.LangLearn.API.Models;
-using Yannik.LangLearn.API.Services;
+﻿using Microsoft.AspNetCore.Mvc;
+using Yannik.LanLearn.Core.Models;
+using Yannik.LanLearn.Core.Services;
 
 namespace Yannik.LangLearn.API.Controllers
 {

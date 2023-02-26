@@ -1,8 +1,8 @@
-﻿using Yannik.LangLearn.API.DataAccess.Database;
-using Yannik.LangLearn.API.DataAccess.OpenAI;
-using Yannik.LangLearn.API.Models.Database;
+﻿using Yannik.LanLearn.Core.DataAccess.Database;
+using Yannik.LanLearn.Core.DataAccess.OpenAI;
+using Yannik.LanLearn.Core.Models.Database;
 
-namespace Yannik.LangLearn.API.Services
+namespace Yannik.LanLearn.Core.Services
 {
     public class MultipleChoiceService
     {
@@ -28,10 +28,10 @@ namespace Yannik.LangLearn.API.Services
         public async Task<List<MultipleChoiceQuestionDatabaseModel>> GetNextMultipleChoicesAsync(string learningLanguage, string questionLanguage)
         {
             var count = Convert.ToInt32(await _dbRepository.CountAsnyc(learningLanguage, questionLanguage));
-            
+
             if (count == 0)
                 return new List<MultipleChoiceQuestionDatabaseModel>();
-            
+
             var randomSkip = _random.Next(0, count - QUESTIONS_PER_ROUND);
 
             var result = await _dbRepository.GetMultipleChoicesAsync(learningLanguage, questionLanguage, randomSkip, QUESTIONS_PER_ROUND);

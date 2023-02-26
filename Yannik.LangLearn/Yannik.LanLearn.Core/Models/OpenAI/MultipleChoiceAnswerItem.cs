@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Yannik.LangLearn.API.Models.OpenAI
+namespace Yannik.LanLearn.Core.Models.OpenAI
 {
     public class MultipleChoiceAnswerItem
     {

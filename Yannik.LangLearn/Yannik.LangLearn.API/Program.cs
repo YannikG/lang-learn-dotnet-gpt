@@ -1,8 +1,8 @@
-using Yannik.LangLearn.API.DataAccess;
-using Yannik.LangLearn.API.DataAccess.Database;
-using Yannik.LangLearn.API.DataAccess.OpenAI;
-using Yannik.LangLearn.API.Options;
-using Yannik.LangLearn.API.Services;
+using Yannik.LanLearn.Core.DataAccess;
+using Yannik.LanLearn.Core.DataAccess.Database;
+using Yannik.LanLearn.Core.DataAccess.OpenAI;
+using Yannik.LanLearn.Core.Options;
+using Yannik.LanLearn.Core.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

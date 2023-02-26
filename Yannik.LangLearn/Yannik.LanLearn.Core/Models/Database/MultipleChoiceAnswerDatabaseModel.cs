@@ -1,4 +1,4 @@
-﻿namespace Yannik.LangLearn.API.Models.Database
+﻿namespace Yannik.LanLearn.Core.Models.Database
 {
     public class MultipleChoiceAnswerDatabaseModel
     {

@@ -1,8 +1,6 @@
-﻿using Yannik.LangLearn.API.DataAccess.Database;
-using Yannik.LangLearn.API.Models.Database;
-using Yannik.LangLearn.API.Models.OpenAI;
+﻿using Yannik.LanLearn.Core.Models.OpenAI;
 
-namespace Yannik.LangLearn.API.DataAccess.OpenAI
+namespace Yannik.LanLearn.Core.DataAccess.OpenAI
 {
     public class MultipleChoiceOpenAIRepository
     {

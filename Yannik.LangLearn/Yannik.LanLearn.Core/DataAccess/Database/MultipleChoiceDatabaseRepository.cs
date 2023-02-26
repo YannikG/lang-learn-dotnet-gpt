@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.Options;
 using MongoDB.Driver;
-using Yannik.LangLearn.API.Models.Database;
-using Yannik.LangLearn.API.Options;
+using Yannik.LanLearn.Core.Models.Database;
+using Yannik.LanLearn.Core.Options;
 
-namespace Yannik.LangLearn.API.DataAccess.Database
+namespace Yannik.LanLearn.Core.DataAccess.Database
 {
     public class MultipleChoiceDatabaseRepository : BaseDatabaseRepository<MultipleChoiceQuestionDatabaseModel>
     {
@@ -31,7 +31,7 @@ namespace Yannik.LangLearn.API.DataAccess.Database
             var filter = builder.Empty;
             filter &= builder.Eq(q => q.QuestionLangauge, questionLanguage);
             filter &= builder.Eq(q => q.LearningLanguage, learningLangue);
-            
+
 
             var result = await _collection
                 .Find(filter)

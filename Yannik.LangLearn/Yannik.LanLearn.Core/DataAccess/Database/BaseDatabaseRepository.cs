@@ -1,7 +1,7 @@
 ﻿using MongoDB.Driver;
-using Yannik.LangLearn.API.Models.Database;
+using Yannik.LanLearn.Core.Models.Database;
 
-namespace Yannik.LangLearn.API.DataAccess.Database
+namespace Yannik.LanLearn.Core.DataAccess.Database
 {
     public class BaseDatabaseRepository<T> where T : BaseDatabaseEntityModel
     {
@@ -62,7 +62,7 @@ namespace Yannik.LangLearn.API.DataAccess.Database
         public virtual async Task DeleteAsync(T entity)
         {
             if (!string.IsNullOrEmpty(entity.Id))
-                await this.DeleteAsync(entity.Id);
+                await DeleteAsync(entity.Id);
         }
 
         #endregion CRUD
