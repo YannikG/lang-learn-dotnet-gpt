@@ -32,7 +32,7 @@ namespace Yannik.LangLearn.Core.Services
             if (count == 0)
                 return new List<MultipleChoiceQuestionDatabaseModel>();
 
-            var randomSkip = _random.Next(0, count - QUESTIONS_PER_ROUND);
+            var randomSkip = QUESTIONS_PER_ROUND >= count ? 0 : _random.Next(0, count - QUESTIONS_PER_ROUND);
 
             var result = await _dbRepository.GetMultipleChoicesAsync(learningLanguage, questionLanguage, randomSkip, QUESTIONS_PER_ROUND);
 

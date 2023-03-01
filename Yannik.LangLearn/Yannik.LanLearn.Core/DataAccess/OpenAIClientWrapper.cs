@@ -45,9 +45,15 @@ namespace Yannik.LangLearn.Core.DataAccess
                 return null;
 
             // Convert the JSON to the desired response type
-            var response = Newtonsoft.Json.JsonConvert.DeserializeObject<TResponse>(jsonResponse);
-
-            return response;
+            try
+            {
+                var response = Newtonsoft.Json.JsonConvert.DeserializeObject<TResponse>(jsonResponse);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"API returned not valid!: {jsonResponse}", ex);
+            }
         }
     }
 }
