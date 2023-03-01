@@ -5,9 +5,14 @@ VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yannik.LangLearn.API", "Yannik.LangLearn.API\Yannik.LangLearn.API.csproj", "{62A5508B-5EDD-47DA-B199-7682EA7E40A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yannik.LangLearn.Core", "Yannik.LanLearn.Core\Yannik.LangLearn.Core.csproj", "{4BF37180-09BC-452E-8FB2-5AEF6BA5DEC6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yannik.LangLearn.Core", "Yannik.LanLearn.Core\Yannik.LangLearn.Core.csproj", "{4BF37180-09BC-452E-8FB2-5AEF6BA5DEC6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yannik.LangLearn.Blazor", "Yannik.LangLearn.Blazor\Yannik.LangLearn.Blazor.csproj", "{F8FA7AF7-F0DE-49E4-A508-B3FB9EBFE473}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yannik.LangLearn.Blazor", "Yannik.LangLearn.Blazor\Yannik.LangLearn.Blazor.csproj", "{F8FA7AF7-F0DE-49E4-A508-B3FB9EBFE473}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A8FB9FF0-3D5B-4016-9822-36BC7D8488CB}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
