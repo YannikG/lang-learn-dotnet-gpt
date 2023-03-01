@@ -1,9 +1,26 @@
 ﻿@inherits LayoutComponentBase
 
-@Body
+<MudThemeProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
 
-<footer>
-    &copy; @System.DateTime.Today.Year.ToString().
-    An interactive learning project from <a href="https://bytepeak.ch">Yannik Gartmann</a>.
-    Code licensed under MIT.
-</footer>
+<MudLayout>
+    <MudAppBar>
+        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+        LangLearn
+    </MudAppBar>
+    <MudDrawer @bind-Open="@_drawerOpen">
+        <NavMenu/>
+    </MudDrawer>
+    <MudMainContent>
+        @Body
+    </MudMainContent>
+</MudLayout>
+@code {
+    bool _drawerOpen = true;
+
+    void DrawerToggle()
+    {
+        _drawerOpen = !_drawerOpen;
+    }
+}

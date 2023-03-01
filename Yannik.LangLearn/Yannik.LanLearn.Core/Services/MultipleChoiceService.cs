@@ -10,7 +10,7 @@ namespace Yannik.LangLearn.Core.Services
         private readonly MultipleChoiceDatabaseRepository _dbRepository;
         private readonly Random _random;
 
-        private const int QUESTIONS_PER_ROUND = 5;
+        private const int QUESTIONS_PER_ROUND = 3;
 
         public MultipleChoiceService(MultipleChoiceOpenAIRepository openAIRepository, MultipleChoiceDatabaseRepository dbRepository)
         {

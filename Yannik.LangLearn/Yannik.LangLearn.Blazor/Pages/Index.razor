@@ -1,12 +1,102 @@
 ﻿@page "/"
+
+@using Yannik.LangLearn.Core.Models.Database
+@using Yannik.LangLearn.Blazor.Extentions
+
 @layout MainLayout
 @inject NavigationManager NavigationManager
+@inject MultipleChoiceService multipleChoiceService
 
 <div>
-	Hier ein Test
+    <MudGrid Justify="Justify.Center">
+        <MudItem xs="4">
+            <MudSelect Label="Langauge I want to learn" @bind-Value="learningLangue" T="string" Variant="Variant.Text">
+                @foreach (var learnLang in SupportedLanguage.Languages)
+                {
+                    <MudSelectItem Value="@learnLang" />
+                }
+            </MudSelect>
+        </MudItem>
+        <MudItem xs="4">
+            <MudSelect Label="Langauge I speak" @bind-Value="questionLanguage" T="string" Variant="Variant.Text">
+                @foreach (var questionLang in SupportedLanguage.QuestionLanguages)
+                {
+                    <MudSelectItem Value="@questionLang" />
+                }
+            </MudSelect>
+        </MudItem>
+    </MudGrid>
+    <MudGrid Justify="Justify.Center">
+        <MudItem xs="8">
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="async (e) => await GenerateLearningSetAsync()">Learn!</MudButton>
+        </MudItem>
+            @foreach(var q in questions)
+            {
+                <MudItem xs="8">
+                    <MudCard>
+                        <MudCardHeader>
+                            <CardHeaderContent>
+                                <MudText>
+                                @q.Question
+                                </MudText>
+                            </CardHeaderContent>
+                        </MudCardHeader>
+                        <MudCardContent>
+                            <MudText>
+                                <ol>
+                                    @foreach (var a in q.Answers.Shuffle())
+                                    {
+                                        <li>
+                                            @if (showResult && isCorrect(a))
+                                            {
+                                                <i style="color: #2E7D32 !important">
+                                                    <strong>Answer</strong>: @a.Answer
+                                                </i>
+                                            }
+                                            else
+                                            {
+                                                <i>
+                                                    <strong>Answer</strong>: @a.Answer
+                                                </i>
+                                            }
+                                            <br />
+                                            <strong>Phonetic</strong>: @a.Phonetic
+                                        </li>
+                                    }
+                                </ol>
+                            </MudText>
+                        </MudCardContent>
+                    </MudCard>
+                </MudItem>
+            }
+        @if (questions.Count <= 0)
+        {
+            <MudItem xs="8">
+                <strong>No sets, please select some values</strong>
+            </MudItem>
+        }
+        <MudItem xs="8">
+            <MudButton Variant="Variant.Filled" Color="Color.Default" OnClick="(e) => showResult = !showResult">Show / Hide Result</MudButton>
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="async (e) => await GenerateLearningSetAsync()">Next</MudButton>
+        </MudItem>
+    </MudGrid>
 </div>
 
 @code {
+    string learningLangue = SupportedLanguage.Languages.First();
+    string questionLanguage = SupportedLanguage.QuestionLanguages.First();
+    List<MultipleChoiceQuestionDatabaseModel> questions = new List<MultipleChoiceQuestionDatabaseModel>();
+    bool showResult = false;
 
+    async Task GenerateLearningSetAsync()
+    {
+        showResult = false;
+        questions = await multipleChoiceService.GetNextMultipleChoicesAsync(learningLangue, questionLanguage);
+    }
+
+    bool isCorrect(MultipleChoiceAnswerDatabaseModel answer)
+    {
+        return answer.IsCorrect;
+    }
 }
 		

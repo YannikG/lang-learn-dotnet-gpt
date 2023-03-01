@@ -1,3 +1,4 @@
+using MudBlazor.Services;
 using Yannik.LangLearn.Core;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +13,7 @@ builder.Configuration.AddUserSecrets<Program>();
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
+builder.Services.AddMudServices();
 
 builder.Services.ConfigureCore(builder.Configuration);
 
