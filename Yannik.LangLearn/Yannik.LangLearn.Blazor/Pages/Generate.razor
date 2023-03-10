@@ -1,0 +1,82 @@
+﻿@page "/generate"
+
+@layout MainLayout
+@inject ISnackbar Snackbar
+@inject NavigationManager NavigationManager
+@inject MultipleChoiceService multipleChoiceService
+
+<div>
+    <MudGrid Justify="Justify.Center">
+        <MudItem xs="3">
+            <MudSelect Label="Langauge I want to learn" @bind-Value="learningLangue" T="string" Variant="Variant.Text">
+                @foreach (var learnLang in SupportedLanguage.Languages)
+                {
+                    <MudSelectItem Value="@learnLang" />
+                }
+            </MudSelect>
+        </MudItem>
+        <MudItem xs="3">
+            <MudSelect Label="Langauge I speak" @bind-Value="questionLanguage" T="string" Variant="Variant.Text">
+                @foreach (var questionLang in SupportedLanguage.QuestionLanguages)
+                {
+                    <MudSelectItem Value="@questionLang" />
+                }
+            </MudSelect>
+        </MudItem>
+        <MudItem xs="3">
+            <MudTextField Label="Topic to generate" @bind-Value="topic" T="string" Variant="Variant.Text"></MudTextField>
+        </MudItem>
+    </MudGrid>
+    <MudGrid Justify="Justify.Center">
+        <MudButton Disabled="@isGenerating" Variant="Variant.Filled" Color="Color.Primary" OnClick="async (e) => await GenerateData()">
+            @if (isGenerating)
+            {
+                <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true" />
+                <MudText Class="ms-2">Processing</MudText>
+            }
+            else
+            {
+                <MudText>Generate Content</MudText>
+            }
+        </MudButton>
+    </MudGrid>
+    <MudGrid Justify="Justify.Center">
+        @if (exception is not null)
+        {
+            <MudText Color="Color.Error">
+                @exception.Message <br>
+                @exception.StackTrace
+            </MudText>
+        }
+    </MudGrid>
+</div>
+
+@code {
+    string learningLangue = string.Empty;
+    string questionLanguage = string.Empty;
+    string topic = string.Empty;
+    Exception? exception = null;
+    bool isGenerating = false;
+
+    async Task GenerateData()
+    {
+        try
+        {
+            exception = null;
+            isGenerating = true;
+            await multipleChoiceService.GenerateAndStoreMultipleChoiceAsync(learningLangue, questionLanguage, topic);
+            Snackbar.Add("new content was generated!", Severity.Success);
+
+        }
+        catch (Exception ex)
+        {
+            exception = ex;
+            Snackbar.Add("someting went wrong, see stack trace", Severity.Error);
+        }
+        finally
+        {
+            await Task.Delay(200);
+            isGenerating = false;
+        }
+    }
+}
