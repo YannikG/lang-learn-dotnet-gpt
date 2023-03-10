@@ -12,7 +12,7 @@ For local development a connection string to the database is provided.
 Make sure you have created the database "questionData" with the collection "multipleChoices" on your MongoDB instance.
 
 ## Usage
-To run the project, navigate to the project directory in your terminal or command prompt and run the following command:
+To run the project, navigate to the API project directory in your terminal or command prompt and run the following command:
 ``
 dotnet run
 ``
@@ -20,6 +20,16 @@ dotnet run
 Then you can navigate to the following URL in your browser:
 ``
 https://localhost:7198/swagger/index.html
+``
+
+Or navigate to the Blazor project directory in your terminal or command prompt and run the following command:
+``
+dotnet run
+``
+
+Then you can navigate to the following URL in your browser:
+``
+https://localhost:7051/
 ``
 
 ## Contributing
