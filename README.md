@@ -34,3 +34,6 @@ https://localhost:7051/
 
 ## Contributing
 Contributions are welcome! If you find a bug or have a feature request, please open an issue on GitHub. If you'd like to contribute code, please fork the repository and create a pull request.
+
+# Support my work
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/T6T7JEP5Q)
